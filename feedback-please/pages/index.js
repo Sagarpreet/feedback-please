@@ -43,17 +43,19 @@ export default function Home() {
           </a>  
         </div>
 
-        { imgState &&  
+        
         <AnimatePresence>
-        <motion.img src={`${imgState && imgState.value}`}
-                key={imgState.value}
-                style={{border: '1px solid lightgrey' }}
-                initial={{x: -200, y: 500, opacity: 0.8, position: 'absolute',  height: '1000px', width:'2000px'}}
-                animate={{x:0, y: 0, opacity: 1 , position: 'absolute', right: '5px' , top:'5px', height: '100px', width:'200px' }}
-                exit={{ x: -400, scale: 2, opacity: 1 }}
+          {imgState &&      <motion.img src={`${imgState && imgState.value}`}
+                key={imgState && imgState.value}
+                style={{border: '1px solid lightgrey',  height: '100px', width:'200px' }}
+                initial={{x: -200, y: 500, opacity: 0.8, position: 'absolute',  scale: 8}}
+                animate={{x:0, y: -350, opacity: 1 , position: 'absolute', right: '5px' , scale: 1 }}
+                exit={{ x: -1000, opacity: 0 }}
                 transition={{ duration: 0.6 }}
-        ></motion.img>
-        </AnimatePresence>}
+        ></motion.img>}
+   
+        </AnimatePresence>
+      
 
       </main>
 
