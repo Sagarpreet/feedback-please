@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import * as Pico from "@gripeless/pico";
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
 
@@ -19,19 +19,7 @@ export default function Home() {
           Welcome to <a href="">feedback-please!</a>
         </h1>
 
- 
-        <div className="grid">
-          <a className="card" onClick={() => {
-          Pico.objectURL(window).then((blob) => {
-            console.log(blob);
-            setImgState(blob);
-            URL.revokeObjectURL(blob);
 
-          })
-          }}>
-            <h3>Take Screenshot</h3>
-          </a>  
-        </div>
 
         <div className="grid">
             <div style={{width: '200px', whiteSpace: 'nowrap'}}>
@@ -42,13 +30,30 @@ export default function Home() {
             </div>
         </div>
 
-        {/*  style={{position: 'absolute', right: '5px' , top:'5px'}} */}
-        { imgState &&  <motion.div 
-        key={imgState.value}
-              initial={{x: -200, y: 500, opacity: 0, position: 'absolute' }}
-              animate={{x:0, y: 0, opacity: 1 , position: 'absolute', right: '5px' , top:'5px'}}
-              transition={{ duration: 0.5 }}
-       ><img src={`${imgState.value}`} height='100px' width='200px' border='1px solid lightgrey'></img></motion.div>}
+        <div className="grid">
+          <a className="card" onClick={() => {
+          Pico.objectURL(window).then((blob) => {
+            console.log(blob);
+            setImgState(blob);
+            URL.revokeObjectURL(blob);
+            setTimeout(() => {setImgState(null)}, 2500);
+          })
+          }}>
+            <h3>Take Screenshot</h3>
+          </a>  
+        </div>
+
+        { imgState &&  
+        <AnimatePresence>
+        <motion.img src={`${imgState && imgState.value}`}
+                key={imgState.value}
+                style={{border: '1px solid lightgrey' }}
+                initial={{x: -200, y: 500, opacity: 0.8, position: 'absolute',  height: '1000px', width:'2000px'}}
+                animate={{x:0, y: 0, opacity: 1 , position: 'absolute', right: '5px' , top:'5px', height: '100px', width:'200px' }}
+                exit={{ x: -400, scale: 2, opacity: 1 }}
+                transition={{ duration: 0.6 }}
+        ></motion.img>
+        </AnimatePresence>}
 
       </main>
 
