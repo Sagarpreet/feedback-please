@@ -1,15 +1,15 @@
 import Head from 'next/head';
 import * as Pico from "@gripeless/pico";
-// import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Home() {
 
-  // const [imgState, setImgState] = useEffect({});
+  const [imgState, setImgState] = useState(null);
 
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>feedback-please</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -23,8 +23,9 @@ export default function Home() {
           <a className="card" onClick={() => {
           Pico.objectURL(window).then((blob) => {
             console.log(blob);
-            // setImgState(blob);
+            setImgState(blob);
             URL.revokeObjectURL(blob);
+
           })
           }}>
             <h3>Take Screenshot</h3>
@@ -40,7 +41,7 @@ export default function Home() {
             </div>
         </div>
 
-        {/* { imgState &&  <img src={`${imgState}`}></img>} */}
+        { imgState &&  <img src={`${imgState.value}`} height='400px' width='400px' border='1px solid lightgrey'></img>}
 
       </main>
 
