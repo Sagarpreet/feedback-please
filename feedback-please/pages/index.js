@@ -45,14 +45,15 @@ export default function Home() {
 
         
         <AnimatePresence>
-          {imgState &&      <motion.img src={`${imgState && imgState.value}`}
+          {imgState && <motion.img src={`${imgState && imgState.value}`}
                 key={imgState && imgState.value}
                 style={{border: '1px solid lightgrey',  height: '100px', width:'200px' }}
                 initial={{x: -200, y: 500, opacity: 0.8, position: 'absolute',  scale: 8}}
-                animate={{x:0, y: -350, opacity: 1 , position: 'absolute', right: '5px' , scale: 1 }}
-                exit={{ x: -1000, opacity: 0 }}
+                animate={{x:0, y: -370, opacity: 1 , position: 'absolute', right: '5px' , scale: 1 }}
+                exit={{ x: -1200, opacity: 0 }}
                 transition={{ duration: 0.6 }}
-        ></motion.img>}
+        ></motion.img>
+        }
    
         </AnimatePresence>
       
@@ -152,7 +153,7 @@ export default function Home() {
           margin: 1rem;
           flex-basis: 45%;
           padding: 1.5rem;
-          text-align: left;
+          text-align: center;
           color: inherit;
           text-decoration: none;
           border: 1px solid #eaeaea;
@@ -185,7 +186,9 @@ export default function Home() {
         @media (max-width: 600px) {
           .grid {
             width: 100%;
-            flex-direction: column;
+          }
+          .title {
+            font-size: 28px;
           }
         }
       `}</style>
