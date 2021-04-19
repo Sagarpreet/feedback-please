@@ -26,7 +26,7 @@ export default function Home() {
             <h4>I am overlapping with next div</h4>
             </div>
             <div>
-            <h4>Yes this is looking weird, please take Screenshot</h4>
+            <h4>Yes this is looking very weird, right?, please take Screenshot by clicking button below</h4>
             </div>
         </div>
 
