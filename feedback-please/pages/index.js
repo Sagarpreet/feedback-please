@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import * as Pico from "@gripeless/pico";
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Home() {
 
@@ -41,7 +42,13 @@ export default function Home() {
             </div>
         </div>
 
-        { imgState &&  <img src={`${imgState.value}`} height='400px' width='400px' border='1px solid lightgrey'></img>}
+        {/*  style={{position: 'absolute', right: '5px' , top:'5px'}} */}
+        { imgState &&  <motion.div 
+        key={imgState.value}
+              initial={{x: -200, y: 500, opacity: 0, position: 'absolute' }}
+              animate={{x:0, y: 0, opacity: 1 , position: 'absolute', right: '5px' , top:'5px'}}
+              transition={{ duration: 0.5 }}
+       ><img src={`${imgState.value}`} height='100px' width='200px' border='1px solid lightgrey'></img></motion.div>}
 
       </main>
 
