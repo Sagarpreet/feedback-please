@@ -2,6 +2,7 @@ import Head from 'next/head';
 import * as Pico from "@gripeless/pico";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Widget from '../components/widget'
 
 export default function Home() {
 
@@ -28,6 +29,12 @@ export default function Home() {
             <div>
             <h4>Yes this is looking very weird, right?, please take Screenshot by clicking button below</h4>
             </div>
+        </div>
+
+        <div className="grid">
+            <Widget onClick={() => {console.log('clicked')}}>
+              
+            </Widget>
         </div>
 
         <div className="grid">
@@ -60,9 +67,7 @@ export default function Home() {
 
       </main>
 
-
-
-      <style jsx>{`
+      <style>{`
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
@@ -193,7 +198,7 @@ export default function Home() {
         }
       `}</style>
 
-      <style jsx global>{`
+      <style>{`
         html,
         body {
           padding: 0;
