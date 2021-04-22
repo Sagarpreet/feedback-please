@@ -31,7 +31,7 @@ export default function Home() {
               return new Promise((resolve) => {
                 setTimeout(() => {
                   console.log('clicked');
-                  resolve();
+                  resolve('done');
                 }, 2000)
               })}}>
             </Widget>
