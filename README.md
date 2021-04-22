@@ -23,4 +23,4 @@ interface IWidget {
 }
 ```
 
-Demo: https://feedback-please-bx8kv5vl3-sagarpreet.vercel.app/
+Demo: https://feedback-please.vercel.app/
