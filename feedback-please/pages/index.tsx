@@ -33,38 +33,8 @@ export default function Home() {
 
         <div className="grid">
             <Widget onClick={() => {console.log('clicked')}}>
-              
             </Widget>
         </div>
-
-        <div className="grid">
-          <a className="card" onClick={() => {
-          Pico.objectURL(window).then((blob) => {
-            console.log(blob);
-            setImgState(blob);
-            URL.revokeObjectURL(blob);
-            setTimeout(() => {setImgState(null)}, 2500);
-          })
-          }}>
-            <h3>Take Screenshot</h3>
-          </a>  
-        </div>
-
-        
-        <AnimatePresence>
-          {imgState && <motion.img src={`${imgState && imgState.value}`}
-                key={imgState && imgState.value}
-                style={{border: '1px solid lightgrey',  height: '100px', width:'200px' }}
-                initial={{x: -200, y: 500, opacity: 0.8, position: 'absolute',  scale: 8}}
-                animate={{x:0, y: -370, opacity: 1 , position: 'absolute', right: '5px' , scale: 1 }}
-                exit={{ x: -1200, opacity: 0 }}
-                transition={{ duration: 0.6 }}
-        ></motion.img>
-        }
-   
-        </AnimatePresence>
-      
-
       </main>
 
       <style>{`
