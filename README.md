@@ -9,7 +9,7 @@
 
 import Widget from '../components/widget'
 
-<Widget asyncOnClick={(blob) => {...}} />
+<Widget asyncOnClick={(blob, textAreaValue) => {...}} />
 
 ```
 
@@ -21,7 +21,7 @@ import Widget from '../components/widget'
 interface IWidget {
     heading?: string;
     onClose?: () => void;
-    asyncOnClick:  (blob: IBlob) => Promise<any>;
+    asyncOnClick:  (blob: IBlob, textAreaValue: string) => Promise<any>;
 }
 ```
 
