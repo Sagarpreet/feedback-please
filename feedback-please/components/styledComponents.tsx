@@ -121,54 +121,57 @@ export const Flex = styled(Flexbox)`
   display: flex;
 `;
 
-export const FlexVerticallyCenter = styled(Flex)`
-  align-items: center;
+export const Loader = styled('div')`
+    border: 2px solid lightgrey;
+    border-top: 2px solid blue;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+
+    @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+      
+        100% {
+          transform: rotate(360deg);
+        }
+      }
 `;
 
 export const StyledButton = styled('button')`
-font-size: 12px;
-font-weight: 500;
-padding: 4px 10px;
-border-radius: 5px;
-border: 1px solid transparent;
-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-text-decoration: none;
-color: white;
-margin: 0 5px;
-cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    color: white;
+    margin: 0 5px;
+    cursor: pointer;
 
-&:disabled,
-&.disabled {
-  color: white;
-  background-color: lightgray;
-  opacity: 0.4;
-  cursor: not-allowed;
-}
+    &:disabled,
+    &.disabled {
+    color: white;
+    background-color: lightgray;
+    opacity: 0.4;
+    cursor: not-allowed;
+    }
 
-&:hover,
-&:active {
-  opacity: 0.7;
-  outline: none;
-}
+    &:hover,
+    &:active {
+    opacity: 0.7;
+    outline: none;
+    }
 
   background-color: #4280f2;
   &:focus {
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 
-`;
-
-export const FlexHorizontallyCenter = styled(Flex)`
-  justify-content: center;
-`;
-
-export const FlexSpaceAround = styled(Flex)`
-  justify-content: space-around;
-  align-items: center;
-`;
-
-export const FlexCenter = styled(FlexVerticallyCenter)`
-  justify-content: center;
 `;
 
 export const FlexColumn = styled(Flex)`

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import {Box, H2, Flex, Image, TextArea, FlexColumn, StyledButton} from './styledComponents'
+import {Box, H2, Flex, Image, TextArea, FlexColumn, StyledButton, Loader} from './styledComponents'
 import * as Pico from "@gripeless/pico";
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -8,19 +8,19 @@ const warningIcon = require('../public/warning.png');
 
 interface IWidget {
     heading?: string;
-    onClick: () => void;
     onClose?: () => void;
+    asyncOnClick:  () => Promise<any>;
 }
 
 const Widget: React.FunctionComponent<IWidget> = (props) => {
 
-    const [textAreaValue, setTextAreaValue] = useState<string | null>(null);
+    const [textAreaValue, setTextAreaValue] = useState<string>('');
     const [imgState, setImgState] = useState(null);
-    const [shoWidget, setShoWidget] = useState(true);
+    const [showLoader, setShowLoader] = useState<boolean>(false);
     
     return (
         <React.Fragment>
-            {shoWidget && (
+            { (
                 <>
                 <FlexColumn height='200px'
                 fontFamily='-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif'
@@ -41,29 +41,35 @@ const Widget: React.FunctionComponent<IWidget> = (props) => {
                         borderColor='lightgrey' 
                         placeholder='Describe issue...'
                         value={textAreaValue}
+                        disabled={showLoader}
                         onChange={(e) => { setTextAreaValue(e.target.value)}}
                         />
 
                         <Flex pt='10px' justifyContent='center'>
                             <StyledButton onClick={() => {
-                                    setShoWidget(false);
+                                    setShowLoader(true)
                                     Pico.objectURL(window).then((blob: any) => {
                                     setImgState(blob);
                                     URL.revokeObjectURL(blob);
-                                    setShoWidget(true);
                                     setTimeout(() => {setImgState(null)}, 2500);
-                                    props.onClick();  
+                                    if(props.asyncOnClick) {
+                                        props.asyncOnClick().then(() => setShowLoader(false));
+                                    } else {
+                                        setShowLoader(false);
+                                    }
                                 })
-                            }} disabled={!textAreaValue}>Take Screenshot</StyledButton>
+                            }} disabled={!textAreaValue || showLoader}>Take Screenshot</StyledButton>
+                            
+                            {showLoader && <Loader></Loader>}
                         </Flex>               
                 </FlexColumn>
                 
                 <AnimatePresence>
                 {imgState && <motion.img src={`${imgState && imgState.value}`}
                     key={imgState && imgState.value}
-                    style={{border: '1px solid lightgrey',  height: '100px', width:'200px' }}
+                    style={{border: '1px solid lightgrey',  height: '100px', width:'200px', position: 'absolute' }}
                     initial={{x: -200, y: 500, opacity: 0.8, position: 'absolute',  scale: 8}}
-                    animate={{x:0, y: -370, opacity: 1 , position: 'absolute', right: '5px' , scale: 1 }}
+                    animate={{x: -5, y: -490, opacity: 1 , position: 'absolute', right: '5px' , scale: 1 }}
                     exit={{ x: -1200, opacity: 0 }}
                     transition={{ duration: 0.6 }}
                 ></motion.img>}

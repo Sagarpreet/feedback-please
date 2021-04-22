@@ -1,12 +1,8 @@
 import Head from 'next/head';
-import * as Pico from "@gripeless/pico";
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Widget from '../components/widget'
 
 export default function Home() {
-
-  const [imgState, setImgState] = useState(null);
 
   return (
     <div className="container">
@@ -17,7 +13,7 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to <a href="">feedback-please!</a>
+          Welcome to <a href="https://github.com/Sagarpreet/feedback-please">feedback-please!</a>
         </h1>
 
 
@@ -27,12 +23,18 @@ export default function Home() {
             <h4>I am overlapping with next div</h4>
             </div>
             <div>
-            <h4>Yes this is looking very weird, right?, please take Screenshot by clicking button below</h4>
+            <h4>Yes this is looking very weird, right?, please take screenshot by using the widget below</h4>
             </div>
         </div>
 
         <div className="grid">
-            <Widget onClick={() => {console.log('clicked')}}>
+            <Widget asyncOnClick={() => {
+              return new Promise((resolve) => {
+                setTimeout(() => {
+                  console.log('clicked');
+                  resolve();
+                }, 2000)
+              })}}>
             </Widget>
         </div>
       </main>
