@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useState } from 'react';
 import Widget from '../components/widget'
 
 export default function Home() {
@@ -37,6 +36,7 @@ export default function Home() {
               })}}>
             </Widget>
         </div>
+
       </main>
 
       <style>{`
