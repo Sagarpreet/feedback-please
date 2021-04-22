@@ -9,7 +9,11 @@ const warningIcon = require('../public/warning.png');
 interface IWidget {
     heading?: string;
     onClose?: () => void;
-    asyncOnClick:  () => Promise<any>;
+    asyncOnClick:  (blob: IBlob) => Promise<any>;
+}
+
+export interface IBlob {
+    value: string;
 }
 
 const Widget: React.FunctionComponent<IWidget> = (props) => {
@@ -48,12 +52,13 @@ const Widget: React.FunctionComponent<IWidget> = (props) => {
                         <Flex pt='10px' justifyContent='center'>
                             <StyledButton onClick={() => {
                                     setShowLoader(true)
-                                    Pico.objectURL(window).then((blob: any) => {
+                                    Pico.objectURL(window).then((blob: IBlob) => {
                                     setImgState(blob);
+                                    // @ts-ignore
                                     URL.revokeObjectURL(blob);
                                     setTimeout(() => {setImgState(null)}, 2500);
                                     if(props.asyncOnClick) {
-                                        props.asyncOnClick().then(() => setShowLoader(false));
+                                        props.asyncOnClick(blob).then(() => setShowLoader(false));
                                     } else {
                                         setShowLoader(false);
                                     }
