@@ -9,7 +9,7 @@ const warningIcon = require('../public/warning.png');
 interface IWidget {
     heading?: string;
     onClose?: () => void;
-    asyncOnClick:  (blob: IBlob) => Promise<any>;
+    asyncOnClick:  (blob: IBlob, textAreaValue: string) => Promise<any>;
 }
 
 export interface IBlob {
@@ -58,7 +58,7 @@ const Widget: React.FunctionComponent<IWidget> = (props) => {
                                     URL.revokeObjectURL(blob);
                                     setTimeout(() => {setImgState(null)}, 2500);
                                     if(props.asyncOnClick) {
-                                        props.asyncOnClick(blob).then(() => setShowLoader(false));
+                                        props.asyncOnClick(blob, textAreaValue).then(() => setShowLoader(false));
                                     } else {
                                         setShowLoader(false);
                                     }

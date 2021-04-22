@@ -27,10 +27,11 @@ export default function Home() {
         </div>
 
         <div className="grid">
-            <Widget asyncOnClick={(blob) => {
+            <Widget asyncOnClick={(blob, textAreaValue) => {
               return new Promise((resolve) => {
                 setTimeout(() => {
                   console.log('blob object', blob);
+                  console.log('textAreaValue', textAreaValue);
                   resolve('done');
                 }, 2000)
               })}}>
