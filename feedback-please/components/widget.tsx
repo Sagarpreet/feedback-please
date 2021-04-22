@@ -29,7 +29,7 @@ const Widget: React.FunctionComponent<IWidget> = (props) => {
                     boxShadow='0px -20px 50px -10px rgb(0 0 0 / 20%)'>
                     <Flex height='60px' width='100%' justifyContent='space-evenly' alignItems='center'> 
                         <Image src={warningIcon} height='20px' width='20px' />
-                        <H2> Report an Issue</H2> 
+                        <H2> {props.heading || `Report an Issue`}</H2> 
                         <Box color='lightgrey' style={{cursor: 'pointer'}} onClick={props.onClose}> x</Box>
                     </Flex>
 
