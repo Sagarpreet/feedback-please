@@ -9,17 +9,19 @@
 
 import Widget from '../components/widget'
 
-<Widget asyncOnClick={() => {...}} />
+<Widget asyncOnClick={(blob) => {...}} />
 
 ```
 
 ### Supported props:
 
 ```
+// blob object has the image url: https://stackoverflow.com/questions/50537735/convert-blob-to-image-file/50538148
+
 interface IWidget {
     heading?: string;
     onClose?: () => void;
-    asyncOnClick:  () => Promise<any>;
+    asyncOnClick:  (blob: IBlob) => Promise<any>;
 }
 ```
 
